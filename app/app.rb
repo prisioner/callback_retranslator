@@ -18,7 +18,8 @@ class CallbackRetranslatorApp < Sinatra::Base
 
     body = request.body.read
     headers = {
-      'Content-Type' => request.env['CONTENT_TYPE']
+      'Content-Type' => request.env['CONTENT_TYPE'],
+      'X-Signature'  => request.env['HTTP_X_SIGNATURE']
     }.compact
 
     TelegramClient.send_message(
